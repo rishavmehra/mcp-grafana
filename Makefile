@@ -37,7 +37,7 @@ test-cloud: ## Run only the cloud-based tests (requires cloud Grafana instance a
 
 .PHONY: run
 run: ## Run the MCP server in stdio mode.
-	go run ./cmd/mcp-grafana/...
+	go run ./cmd/mcp-grafana
 
 .PHONY: run-sse
 run-sse: ## Run the MCP server in SSE mode.
