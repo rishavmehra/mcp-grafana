@@ -41,4 +41,4 @@ run: ## Run the MCP server in stdio mode.
 
 .PHONY: run-sse
 run-sse: ## Run the MCP server in SSE mode.
-	go run ./cmd/mcp-grafana/... --transport sse
+	go run ./cmd/mcp-grafana --transport sse
