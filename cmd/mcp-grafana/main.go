@@ -50,7 +50,7 @@ type disabledTools struct {
 	search, datasource, incident,
 	prometheus, loki, alerting,
 	dashboard, oncall, asserts, sift, admin,
-	pyroscope bool
+	pyroscope, tempo bool
 }
 
 // Configuration for the Grafana client.

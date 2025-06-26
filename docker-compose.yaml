@@ -44,3 +44,25 @@ services:
     image: grafana/pyroscope:1.13.4
     ports:
       - 4040:4040
+
+  tempo:
+    image: grafana/tempo:2.3.0
+    command: [ "-config.file=/etc/tempo.yml" ]
+    volumes:
+      - ./testdata/tempo-config.yml:/etc/tempo.yml
+      - /tmp/tempo:/tmp/tempo
+    ports:
+      - "3200:3200"   # tempo
+      - "4317:4317"   # otlp grpc
+      - "4318:4318"   # otlp http
+      - "14268:14268" # jaeger ingest
+      - "9411:9411"   # zipkin
+
+  # Synthetic load generator for Tempo traces
+  k6-tracing:
+    image: ghcr.io/grafana/xk6-client-tracing:v0.0.5
+    environment:
+      - ENDPOINT=tempo:4317
+    restart: always
+    depends_on:
+      - tempo
